@@ -162,7 +162,7 @@ func UpdatePost(w http.ResponseWriter, r*http.Request){
 		return
 	}
 
-	response.JSON(w, http.StatusNoContent, nil)
+	response.JSON(w, http.StatusOK, nil)
 }
 
 func DeletePost(w http.ResponseWriter, r*http.Request){
@@ -252,10 +252,10 @@ func LikePost(w http.ResponseWriter, r *http.Request){
 		return
 	}
 
-	response.JSON(w, http.StatusNoContent, nil)
+	response.JSON(w, http.StatusOK, nil)
 }
 
-func DislikePost(w http.ResponseWriter, r *http.Request){
+func UnlikePost(w http.ResponseWriter, r *http.Request){
 	params := mux.Vars(r)
 	postID, err := strconv.ParseUint(params["postID"], 10, 64)
 	if err != nil {
@@ -271,10 +271,10 @@ func DislikePost(w http.ResponseWriter, r *http.Request){
 	defer db.Close()
 
 	rep := repositories.NewPostRep(db)
-	if err := rep.Dislike(postID); err != nil {
+	if err := rep.Unlike(postID); err != nil {
 		response.Erro(w, http.StatusInternalServerError, err)
 		return
 	}
 
-	response.JSON(w, http.StatusNoContent, nil)
+	response.JSON(w, http.StatusOK, nil)
 }

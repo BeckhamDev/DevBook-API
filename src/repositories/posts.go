@@ -158,7 +158,7 @@ func (p Posts) Like(postID uint64) error{
 	return nil
 }
 
-func (p Posts) Dislike(postID uint64) error{
+func (p Posts) Unlike(postID uint64) error{
 	sql, err := p.db.Prepare("update posts p set likes = CASE WHEN likes > 0 THEN likes - 1 ELSE 0 END where id = ?")
 	if err != nil {
 		return err
