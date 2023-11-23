@@ -203,7 +203,7 @@ func DeletePost(w http.ResponseWriter, r*http.Request){
 	return
 	}
 
-	response.JSON(w, http.StatusNoContent, nil)
+	response.JSON(w, http.StatusOK, nil)
 }
 
 func GetPostsByUser(w http.ResponseWriter, r *http.Request){
