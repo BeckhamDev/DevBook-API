@@ -89,7 +89,7 @@ func (u Users) Update(id uint64, user models.User) error{
 	}
 	defer sql.Close()
 
-	if _ , err := sql.Exec(user.Name, user.Nick, user.Email, id); err != nil {
+	if _ , err := sql.Exec(user.Name, user.Email, user.Nick, id); err != nil {
 		return err
 	}
 	return nil
